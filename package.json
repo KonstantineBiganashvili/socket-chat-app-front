@@ -1,0 +1,38 @@
+{
+  "name": "sockets-chat-front",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@reduxjs/toolkit": "^1.9.0",
+    "axios": "^1.2.0",
+    "framer-motion": "^7.6.15",
+    "next": "^12.2.4-canary.9",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-icons": "^4.7.1",
+    "react-loader-spinner": "^5.3.4",
+    "react-redux": "^8.0.5",
+    "redux": "^4.2.0",
+    "styled-components": "^5.3.6"
+  },
+  "devDependencies": {
+    "babel-eslint": "^10.1.0",
+    "eslint": "^8.28.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-next": "13.0.5",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-jsx-a11y": "^6.6.1",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.31.11",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-simple-import-sort": "^8.0.0",
+    "prettier": "2.8.0"
+  }
+}
