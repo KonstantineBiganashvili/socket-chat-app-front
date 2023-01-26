@@ -2,18 +2,14 @@ import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { signup } from '../../api/modules/auth';
 import {
   emptyFieldsList,
   isEmailValid,
   isPasswordStrong,
 } from '../../helpers/validators';
 import AuthLayout from '../../layouts/AuthLayout';
-import {
-  setErrorNotification,
-  setPageLoader,
-  setSuccessNotification,
-} from '../../redux/slices/appState';
+import { signupAction } from '../../redux/actions/auth';
+import { setPageLoader } from '../../redux/slices/appState';
 import { AuthFormContainer, ButtonsContainer } from '../../styles/Auth.styles';
 import ActionButton from '../UI/Buttons/ActionButton';
 import CustomInput from '../UI/Inputs/CustomInput';
@@ -32,12 +28,13 @@ const initialValues = {
 };
 
 const SignUp = () => {
-  const router = useRouter();
-  const dispatch = useDispatch();
-  const isPageLoading = useSelector((state) => state.appState.pageLoader);
-  const [isLoading, setLoading] = useState(false);
   const [formValues, setFormValues] = useState(initialValues);
   const [errors, setErrors] = useState(initialValues);
+  const [isSubmitting, setSubmitting] = useState(false);
+
+  const router = useRouter();
+  const dispatch = useDispatch();
+  const { pageLoader: isPageLoading } = useSelector((state) => state.appState);
 
   const handleChange = (field, value) => {
     setErrors({
@@ -79,22 +76,11 @@ const SignUp = () => {
     }
 
     try {
-      setLoading(true);
+      setSubmitting(true);
 
-      const response = await signup(formValues);
-
-      if (response.status === 201) {
-        dispatch(setSuccessNotification('Successfully Registered'));
-        router.push('/login');
-      }
-    } catch (err) {
-      dispatch(
-        setErrorNotification(
-          err?.response?.data?.message || 'Oops... Something Went Wrong!',
-        ),
-      );
+      dispatch(signupAction(formValues, router));
     } finally {
-      setLoading(false);
+      setSubmitting(false);
     }
   };
 
@@ -169,7 +155,7 @@ const SignUp = () => {
           <ActionButton
             text="Sign Up"
             onClick={handleSignup}
-            loading={isLoading}
+            loading={isSubmitting}
           />
         </ButtonsContainer>
       </AuthFormContainer>

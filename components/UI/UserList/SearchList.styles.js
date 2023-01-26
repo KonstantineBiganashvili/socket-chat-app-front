@@ -5,7 +5,6 @@ export const UserListContainer = styled.ul`
   max-height: 500px;
   overflow-y: auto;
   width: 100%;
-  top: 20px;
   border: 1px solid #d5bdaf;
   border-radius: 5px;
   z-index: 100;

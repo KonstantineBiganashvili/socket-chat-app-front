@@ -2,16 +2,10 @@ import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { setAuthToken } from '../../api';
-import { login } from '../../api/modules/auth';
 import { emptyFieldsList, isEmailValid } from '../../helpers/validators';
 import AuthLayout from '../../layouts/AuthLayout';
-import {
-  setErrorNotification,
-  setPageLoader,
-  setSuccessNotification,
-} from '../../redux/slices/appState';
-import { setToken } from '../../redux/slices/user';
+import { loginAction } from '../../redux/actions/auth';
+import { setPageLoader } from '../../redux/slices/appState';
 import { AuthFormContainer, ButtonsContainer } from '../../styles/Auth.styles';
 import ActionButton from '../UI/Buttons/ActionButton';
 import CustomInput from '../UI/Inputs/CustomInput';
@@ -22,12 +16,13 @@ import NavLink from '../UI/NavLink';
 const initialValues = { email: '', password: '' };
 
 const Login = () => {
-  const dispatch = useDispatch();
-  const router = useRouter();
-  const [isLoading, setLoading] = useState(false);
-  const isPageLoading = useSelector((state) => state.appState.pageLoader);
   const [formValues, setFormValues] = useState(initialValues);
   const [errors, setErrors] = useState(initialValues);
+  const [isSubmitting, setSubmitting] = useState(false);
+
+  const dispatch = useDispatch();
+  const router = useRouter();
+  const { pageLoader: isPageLoading } = useSelector((state) => state.appState);
 
   const handleChange = (field, value) => {
     setErrors({
@@ -57,27 +52,10 @@ const Login = () => {
 
     // Api call for login
     try {
-      setLoading(true);
-
-      const {
-        data: { accessToken },
-      } = await login(formValues);
-
-      localStorage.setItem('token', JSON.stringify(accessToken));
-      setAuthToken(accessToken);
-      dispatch(setToken(accessToken));
-      dispatch(setSuccessNotification('Successfully Logged In'));
-
-      router.push('/');
-    } catch (err) {
-      dispatch(
-        setErrorNotification(
-          err?.response?.data?.response?.message ||
-            'Oops... Something Went Wrong!',
-        ),
-      );
+      setSubmitting(true);
+      dispatch(loginAction(formValues, router));
     } finally {
-      setLoading(false);
+      setSubmitting(false);
     }
   };
 
@@ -114,7 +92,7 @@ const Login = () => {
           <ActionButton
             text="Log In"
             onClick={handleSubmit}
-            loading={isLoading}
+            loading={isSubmitting}
           />
         </ButtonsContainer>
       </AuthFormContainer>

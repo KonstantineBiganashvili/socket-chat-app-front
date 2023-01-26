@@ -1,0 +1,66 @@
+{
+  "env": {
+    "browser": true,
+    "es6": true,
+    "node": true
+  },
+  "extends": [
+    "next/core-web-vitals",
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:prettier/recommended",
+    "prettier",
+    "airbnb"
+  ],
+  "plugins": ["jsx-a11y", "react", "simple-import-sort", "prettier"],
+  "parserOptions": {
+    "ecmaVersion": 2021,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "rules": {
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "import/no-unresolved": "off",
+    "import/extensions": "off",
+    "jsx-a11y/label-has-associated-control": "off",
+    "jsx-a11y/anchor-is-valid": "off",
+    "jsx-a11y/no-static-element-interactions": "off",
+    "jsx-a11y/click-events-have-key-events": "off",
+    "simple-import-sort/imports": ["error"],
+    "simple-import-sort/exports": ["error"],
+    "prettier/prettier": [
+      "error",
+      {
+        "endOfLine": "auto"
+      }
+    ],
+    "react/function-component-definition": 0,
+    "react/react-in-jsx-scope": 0,
+    "react/prop-types": 0,
+    "react/jsx-props-no-spreading": 0,
+    "react/jsx-closing-bracket-location": ["error", "tag-aligned"],
+    "react/jsx-one-expression-per-line": 0,
+    "react-hooks/exhaustive-deps": 0,
+    "implicit-arrow-linebreak": 0,
+    "indent": 0,
+    "no-confusing-arrow": 0,
+    "operator-linebreak": 0,
+    "consistent-return": 0,
+    "object-curly-newline": 0,
+    "import/no-extraneous-dependencies": ["error", { "devDependencies": true }],
+    "import/prefer-default-export": 2,
+    "no-param-reassign": 0,
+    "no-plusplus": 0,
+    "linebreak-style": 0
+  },
+  "settings": {
+    "react": {
+      "next": {
+        "rootDir": "/"
+      },
+      "version": "detect"
+    }
+  }
+}

@@ -6,9 +6,15 @@ import {
   RadioButtonsGroup,
 } from './RadioButtonGroup.styles';
 
-const RadioButtonGroup = ({ buttons, field, handleChange, selected }) => (
+const RadioButtonGroup = ({
+  buttons,
+  field,
+  handleChange,
+  selected,
+  groupName,
+}) => (
   <RadioButtonsContainer>
-    Gender
+    {groupName}
     <RadioButtonsGroup>
       {buttons.map(({ name, value }) => (
         <RadioButton

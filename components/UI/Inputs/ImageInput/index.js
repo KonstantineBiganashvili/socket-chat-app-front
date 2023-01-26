@@ -13,14 +13,7 @@ import ImageLoader from './ImageLoader';
 
 const ImageInput = ({ isUploading, src, handleChange, handleDelete }) => {
   if (isUploading) {
-    return (
-      <ImageLoader
-        loaderWidth={400}
-        loaderHeight={150}
-        containerWidth={400}
-        containerHeight={250}
-      />
-    );
+    return <ImageLoader />;
   }
 
   return (

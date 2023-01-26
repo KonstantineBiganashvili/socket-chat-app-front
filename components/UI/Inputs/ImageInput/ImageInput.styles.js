@@ -5,8 +5,10 @@ export const LabelContainer = styled.label`
   display: flex;
   flex-direction: ${(props) => (props.img ? 'column' : 'row')};
   gap: 15px;
-  height: 250px;
-  width: 400px;
+  width: 100%;
+  max-width: 400px;
+  height: 100%;
+  max-height: 250px;
   background-color: #f5f5f5;
   cursor: pointer;
   align-items: center;
@@ -22,14 +24,18 @@ export const Input = styled.input`
 `;
 
 export const ImageContainer = styled.div`
-  width: 200px;
-  height: 200px;
+  width: 100%;
+  max-width: 200px;
+  height: 100%;
+  max-height: 200px;
   position: relative;
 `;
 
 export const LoaderContainer = styled.div`
-  width: 400px;
-  height: 250px;
+  width: 100%;
+  max-width: 400px;
+  height: 100%;
+  max-height: 250px;
   display: flex;
   align-items: center;
   justify-content: center;

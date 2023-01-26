@@ -1,24 +1,31 @@
 import React from 'react';
 
+import Options from './Options';
 import { CustomSelect, Option, SelectContainer } from './Select.styles';
 
-const Select = ({ value, list, field, handleChange }) => (
-  <SelectContainer>
-    Country
-    <CustomSelect
-      value={value || ''}
-      onChange={({ target }) => handleChange(field, target.value)}
-    >
-      <Option value="" hidden>
-        Choose Your Country
-      </Option>
-      {list.map((listItem) => (
-        <Option key={listItem.country} value={listItem.country}>
-          {listItem.country}
+const Select = ({
+  value,
+  options,
+  field,
+  handleChange,
+  name,
+  defaultValue,
+}) => {
+  const onChangeHandle = ({ target }) => {
+    handleChange(field, target.value);
+  };
+
+  return (
+    <SelectContainer>
+      {name}
+      <CustomSelect value={value || ''} onChange={onChangeHandle}>
+        <Option value="" hidden>
+          {defaultValue}
         </Option>
-      ))}
-    </CustomSelect>
-  </SelectContainer>
-);
+        <Options options={options} />
+      </CustomSelect>
+    </SelectContainer>
+  );
+};
 
 export default Select;

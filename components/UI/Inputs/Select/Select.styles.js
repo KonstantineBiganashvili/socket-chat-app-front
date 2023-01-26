@@ -7,7 +7,8 @@ export const SelectContainer = styled.div`
 `;
 
 export const CustomSelect = styled.select`
-  width: 400px;
+  width: 100%;
+  max-width: 400px;
   height: 40px;
   border-radius: 5px;
   background-color: #f5f5f5;
