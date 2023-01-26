@@ -39,7 +39,7 @@ const SideBar = () => {
         <ListContainer>
           <UserList users={chats} />
         </ListContainer>
-        <Link href="/user/edit" passHref>
+        <Link href="/user/profile" passHref>
           <CurrentUser>
             <UserCard user={profile} />
           </CurrentUser>

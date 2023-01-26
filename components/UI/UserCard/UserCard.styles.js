@@ -19,11 +19,8 @@ export const ImageWrapper = styled.div`
   width: 60px;
   height: 60px;
   position: relative;
-
-  // This is here because next image is creating span on it's own and I want it to make round
-  span {
-    border-radius: 100px;
-  }
+  overflow: hidden;
+  border-radius: 100px;
 `;
 
 export const DefaultImage = styled.div`

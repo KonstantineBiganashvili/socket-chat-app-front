@@ -2,10 +2,10 @@ import React, { useCallback, useState } from 'react';
 import { BallTriangle } from 'react-loader-spinner';
 import { useDispatch } from 'react-redux';
 
-import { searchUsers } from '../../../../api/modules/user';
 import debounce from '../../../../helpers/debounce';
 import highlightUsername from '../../../../helpers/highlightUsername';
 import { setErrorNotification } from '../../../../redux/slices/appState';
+import { searchUsers } from '../../../../services/api/modules/user';
 import SearchInput from '../../Inputs/SearchInput';
 import UserList from '../../UserList';
 import {

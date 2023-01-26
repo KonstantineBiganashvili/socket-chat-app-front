@@ -4,11 +4,20 @@ import { FaUserAstronaut } from 'react-icons/fa';
 
 import { Card, DefaultImage, ImageWrapper } from './UserCard.styles';
 
-const UserCard = ({ user: { username, image } }) => {
+const UserCard = ({
+  user: { id, username, image, chat_id: chatId },
+  handleClick,
+}) => {
   const photoURL = image?.photo_url || '';
 
+  const onClickHandle = () => {
+    if (handleClick) {
+      handleClick((id && { id }) || (chatId && { chat_id: chatId }));
+    }
+  };
+
   return (
-    <Card>
+    <Card onClick={onClickHandle}>
       {photoURL ? (
         <ImageWrapper>
           <Image src={photoURL} layout="fill" objectFit="contain" />
